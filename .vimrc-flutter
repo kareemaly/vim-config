@@ -1,0 +1,23 @@
+nmap <silent> <leader>jd <Plug>(coc-definition)
+nmap <silent> <leader>jt <Plug>(coc-type-definition)
+nmap <silent> <leader>jm <Plug>(coc-implementation)
+nmap <silent> <leader>jr <Plug>(coc-references)
+
+let g:dart_format_on_save = 1
+
+set backspace=indent,eol,start  " more powerful backspacing
+
+" Use K to show documentation in preview window.
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
+call plug#begin('~/.vim/plugged')
+Plug 'dart-lang/dart-vim-plugin'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
