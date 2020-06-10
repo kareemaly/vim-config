@@ -1,3 +1,5 @@
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'knsh14/vim-github-link'
 Plug 'preservim/nerdtree'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -10,7 +12,6 @@ Plug 'airblade/vim-gitgutter'
 call plug#end()
 
 syntax on
-filetype plugin indent on
 set relativenumber
 set nu
 set hlsearch
@@ -93,3 +94,4 @@ nmap <leader>hn :GitGutterNextHunk<CR>
 nmap <leader>hN :GitGutterPrevHunk<CR>
 nmap <leader>gf :GitGutterFold<CR>
 
+let g:airline_theme='bubblegum'
