@@ -6,6 +6,7 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'morhetz/gruvbox'
+Plug 'airblade/vim-gitgutter'
 call plug#end()
 
 syntax on
@@ -31,6 +32,7 @@ set scrolloff=999
 set backspace=indent,eol,start  " more powerful backspacing
 set wildmode=longest,list,full
 set wildmenu
+set updatetime=100
 
 set colorcolumn=80
 highlight ColorColumn ctermbg=0 guibg=lightgrey
@@ -81,3 +83,13 @@ endfun
 autocmd BufWritePre * :call TrimWhitespace()
 
 au BufNewFile,BufRead Jenkinsfile setf groovy
+
+" Git Gutter Line Highlights
+let g:gitgutter_map_keys = 0
+nmap <leader>hs :GitGutterStageHunk<CR>
+nmap <leader>hu :GitGutterUndoHunk<CR>
+nmap <leader>gh :GitGutterLineHighlightsToggle<CR>
+nmap <leader>hn :GitGutterNextHunk<CR>
+nmap <leader>hN :GitGutterPrevHunk<CR>
+nmap <leader>gf :GitGutterFold<CR>
+
