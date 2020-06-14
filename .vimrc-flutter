@@ -18,6 +18,3 @@ function! s:show_documentation()
   endif
 endfunction
 
-call plug#begin('~/.vim/plugged')
-Plug 'dart-lang/dart-vim-plugin'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}

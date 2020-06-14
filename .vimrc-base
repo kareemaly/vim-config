@@ -1,22 +1,8 @@
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'knsh14/vim-github-link'
-Plug 'preservim/nerdtree'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-surround'
-Plug 'morhetz/gruvbox'
-Plug 'airblade/vim-gitgutter'
-call plug#end()
-
 syntax on
 set relativenumber
 set nu
 set hlsearch
 set smartindent
-set hidden
 set expandtab
 set tabstop=2
 set softtabstop=2
@@ -25,22 +11,19 @@ set nowrap
 set noswapfile
 set smartcase
 set nobackup
-set undodir=~/.vim/undodir
-set undofile
 set incsearch
-set termguicolors
 set scrolloff=999
 set backspace=indent,eol,start  " more powerful backspacing
 set wildmode=longest,list,full
 set wildmenu
-set updatetime=100
+
+let mapleader = " "
 
 set colorcolumn=80
 highlight ColorColumn ctermbg=0 guibg=lightgrey
 
 cabbr <expr> %% expand('%:p:h')
 
-let mapleader = " "
 map <C-n> :NERDTreeToggle<CR>
 map <leader>f :NERDTreeFind<CR>
 
@@ -61,6 +44,12 @@ cnoremap <C-h> <Left>
 cnoremap <C-j> <Down>
 cnoremap <C-k> <Up>
 cnoremap <C-l> <Right>
+
+" Navigate between splits
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
 
 " Copy github link to system clipboard
 nnoremap <leader>cg :GetCurrentBranchLink<CR>
@@ -84,14 +73,5 @@ endfun
 autocmd BufWritePre * :call TrimWhitespace()
 
 au BufNewFile,BufRead Jenkinsfile setf groovy
-
-" Git Gutter Line Highlights
-let g:gitgutter_map_keys = 0
-nmap <leader>hs :GitGutterStageHunk<CR>
-nmap <leader>hu :GitGutterUndoHunk<CR>
-nmap <leader>gh :GitGutterLineHighlightsToggle<CR>
-nmap <leader>hn :GitGutterNextHunk<CR>
-nmap <leader>hN :GitGutterPrevHunk<CR>
-nmap <leader>gf :GitGutterFold<CR>
 
 let g:airline_theme='bubblegum'

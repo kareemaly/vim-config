@@ -1,3 +1,10 @@
 # !/bin/bash
 DIR="$( cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd )"
-cat "${DIR}/.vimrc-$1" "${DIR}/.vimrc-base" > ~/.vimrc
+echo "
+call plug#begin('~/.vim/plugged')
+$(cat "${DIR}/.vimrc-base-plugins")
+$(cat "${DIR}/.vimrc-$1-plugins")
+call plug#end()
+$(cat "${DIR}/.vimrc-base")
+$(cat "${DIR}/.vimrc-$1")
+" > ~/.vimrc
