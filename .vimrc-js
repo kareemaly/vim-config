@@ -2,9 +2,3 @@
 nmap <leader>py <Plug>(Prettier)
 autocmd BufWritePost *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
 
-" Number of lines to see above and below the cursor
-" YCM Completer configurations
-nnoremap <leader>jd :YcmCompleter GoTo<CR>
-nnoremap <leader>ji :YcmCompleter OrganizeImports<CR>
-nnoremap <leader>jr :YcmCompleter RefactorRename<Space>
-

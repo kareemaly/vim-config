@@ -1,5 +1,5 @@
 # !/bin/bash
-DIR="$( cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd )"
+DIR="${HOME}/vim-config"
 echo "
 call plug#begin('~/.vim/plugged')
 $(cat "${DIR}/.vimrc-base-plugins")
