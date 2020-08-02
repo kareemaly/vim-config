@@ -11,6 +11,9 @@ set nowrap
 set noswapfile
 set smartcase
 set nobackup
+set nowritebackup
+set undodir=~/.vim/undo-dir
+set undofile
 set incsearch
 set scrolloff=999
 set backspace=indent,eol,start  " more powerful backspacing
@@ -35,6 +38,7 @@ let g:gruvbox_contrast_dark="hard"
 
 " Git status
 nmap <leader>gs :G<CR>
+nmap <leader>ee g_F{a<CR><ESC>O
 
 nnoremap <leader>cs :let<SPACE>@/=""<CR>
 " In insert or command mode, move normally by using Ctrl
@@ -46,12 +50,6 @@ cnoremap <C-h> <Left>
 cnoremap <C-j> <Down>
 cnoremap <C-k> <Up>
 cnoremap <C-l> <Right>
-
-" Navigate between splits
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
 
 " Copy github link to system clipboard
 nnoremap <leader>cg :GetCurrentBranchLink<CR>
@@ -74,9 +72,18 @@ endfun
 
 autocmd BufWritePre * :call TrimWhitespace()
 
-au BufNewFile,BufRead Jenkinsfile setf groovy
+au BufNewFile,BufRead Jenkinsfile* setf groovy
 
 let g:airline_theme='bubblegum'
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Fzf configurations
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nmap <C-p> :GF<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -85,10 +92,11 @@ let g:airline_theme='bubblegum'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nmap <silent> <leader>jd <Plug>(coc-definition)
-nmap <silent> <leader>jt <Plug>(coc-type-definition)
-nmap <silent> <leader>jm <Plug>(coc-implementation)
-nmap <silent> <leader>jr <Plug>(coc-references)
+nmap <leader>jd <Plug>(coc-definition)
+nmap <leader>jt <Plug>(coc-type-definition)
+nmap <leader>jm <Plug>(coc-implementation)
+nmap <leader>jr <Plug>(coc-references)
+nmap <leader>jn <Plug>(coc-rename)
 " Use K to show documentation in preview window.
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 
@@ -99,6 +107,15 @@ function! s:show_documentation()
     call CocAction('doHover')
   endif
 endfunction
+
+" Always show the signcolumn, otherwise it would shift the text each time
+" diagnostics appear/become resolved.
+if has("patch-8.1.1564")
+  " Recently vim can merge signcolumn and number column into one
+  set signcolumn=number
+else
+  set signcolumn=yes
+endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -106,3 +123,14 @@ endfunction
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Copy Matches
+function! CopyMatches()
+  let hits = []
+  %s//\=len(add(hits, submatch(0))) ? submatch(0) : ''/gne
+  let reg = 'm'
+  execute 'let @'.reg.' = join(hits, "\n") . "\n"'
+endfunction
+
+nmap <leader>cm :call CopyMatches()<CR>
+
