@@ -1,2 +1,2 @@
 Plug 'dart-lang/dart-vim-plugin'
-
+Plug 'neoclide/coc.nvim', {'branch': 'release'}

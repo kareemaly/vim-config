@@ -3,4 +3,4 @@ Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'leafgarland/typescript-vim'
 Plug 'mattn/emmet-vim'
-
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
