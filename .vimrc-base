@@ -99,3 +99,11 @@ nmap <leader>g" g_F"yi":e<SPACE><C-R>"<CR>
 " Go to file between single quotes
 nmap <leader>g' g_F'yi':e<SPACE><C-R>"<CR>
 
+" Open terminal in current directory
+map <F6> :let $VIM_DIR=expand('%:p:h')<CR>:terminal<CR>cd $VIM_DIR<CR>
+
+autocmd FileType python setlocal tabstop=4 softtabstop=4 shiftwidth=4
+
+map <leader>tt :let $VIM_DIR=expand('%:p:h')<CR>:terminal<CR>cd $VIM_DIR<CR>
+
+
