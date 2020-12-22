@@ -21,6 +21,7 @@ set wildmode=longest,list,full
 set wildmenu
 set cmdheight=2
 set updatetime=300
+set clipboard=unnamedplus
 
 let mapleader = " "
 
@@ -28,9 +29,6 @@ set colorcolumn=80
 highlight ColorColumn ctermbg=0 guibg=lightgrey
 
 cabbr <expr> %% expand('%:p:h')
-
-map <C-n> :NERDTreeToggle<CR>
-map <leader>f :NERDTreeFind<CR>
 
 colorscheme gruvbox
 set background=dark
@@ -76,10 +74,6 @@ au BufNewFile,BufRead Jenkinsfile* setf groovy
 
 let g:airline_theme='bubblegum'
 
-" Fzf configurations
-nmap <C-p> :GF<CR>
-nmap <C-P> :Files<CR>
-
 " Copy Matches
 function! CopyMatches()
   let hits = []
@@ -100,10 +94,23 @@ nmap <leader>g" g_F"yi":e<SPACE><C-R>"<CR>
 nmap <leader>g' g_F'yi':e<SPACE><C-R>"<CR>
 
 " Open terminal in current directory
-map <F6> :let $VIM_DIR=expand('%:p:h')<CR>:terminal<CR>cd $VIM_DIR<CR>
-
-autocmd FileType python setlocal tabstop=4 softtabstop=4 shiftwidth=4
-
 map <leader>tt :let $VIM_DIR=expand('%:p:h')<CR>:terminal<CR>cd $VIM_DIR<CR>
 
+" Mappings of crl key (the devil)
+nmap ;q <C-w>q
+nmap ;h <C-w>h
+nmap ;j <C-w>j
+nmap ;k <C-w>k
+nmap ;l <C-w>l
+nmap ;H <C-w>H
+nmap ;J <C-w>J
+nmap ;K <C-w>K
+nmap ;L <C-w>L
+nmap ;v <C-w>v
+nmap ;s <C-w>s
+map ;n :NERDTreeToggle<CR>
+map ;f :NERDTreeFind<CR>
+map ;p :GF<CR>
+map ;w :w<CR>
+map ;o <C-O>
 

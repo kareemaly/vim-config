@@ -34,12 +34,10 @@ set cmdheight=2
 set updatetime=300
 set smarttab
 filetype plugin indent on
-" show existing tab with 4 spaces width
 set tabstop=4
-" when indenting with '>', use 4 spaces width
 set shiftwidth=4
-" On pressing tab, insert 4 spaces
 set expandtab
+set clipboard=unnamedplus
 
 let mapleader = " "
 
@@ -96,7 +94,7 @@ au BufNewFile,BufRead Jenkinsfile* setf groovy
 let g:airline_theme='bubblegum'
 
 " Fzf configurations
-nmap <C-p> :GF<CR>
+nmap <C-p> :Files<CR>
 
 " Copy Matches
 function! CopyMatches()
@@ -161,4 +159,22 @@ endif
 nnoremap <silent><nowait> <leader>oi :call CocAction('runCommand', 'editor.action.organizeImport')<CR>
 
 map <leader>tt :let $VIM_DIR=expand('%:p:h')<CR>:terminal<CR>cd $VIM_DIR<CR>
+
+" Mappings of crl key (the devil)
+nmap ;q <C-w>q
+nmap ;h <C-w>h
+nmap ;j <C-w>j
+nmap ;k <C-w>k
+nmap ;l <C-w>l
+nmap ;H <C-w>H
+nmap ;J <C-w>J
+nmap ;K <C-w>K
+nmap ;L <C-w>L
+nmap ;v <C-w>v
+nmap ;s <C-w>s
+map ;n :NERDTreeToggle<CR>
+map ;f :NERDTreeFind<CR>
+map ;p :GF<CR>
+map ;w :w<CR>
+map ;o <C-O>
 
