@@ -110,7 +110,11 @@ nmap ;v <C-w>v
 nmap ;s <C-w>s
 map ;n :NERDTreeToggle<CR>
 map ;f :NERDTreeFind<CR>
-map ;p :GF<CR>
+map ;p :Files<CR>
 map ;w :w<CR>
 map ;o <C-O>
 
+
+""" Open file in github
+""" This depends on clipboard-cli npm package
+nmap <leader>go <leader>cg:!google-chrome $(clipboard)<CR><CR>

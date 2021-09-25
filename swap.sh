@@ -1,5 +1,5 @@
 # !/bin/bash
-DIR="${HOME}/vim-config"
+DIR="${HOME}/env/vim-config"
 if [ -f "${DIR}/.vimrc-$1-plugins" ]; then
     echo "
 call plug#begin('~/.vim/plugged')
